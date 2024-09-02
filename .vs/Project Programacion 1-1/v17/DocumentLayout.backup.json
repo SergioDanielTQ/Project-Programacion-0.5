@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sergi\\OneDrive\\Documents\\Programacion 1\\Project Programacion 1-1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{900E769D-700F-46D3-9713-7FAB628A7ADB}|Project Programacion 1-1\\Project Programacion 1-1.vcxproj|C:\\Users\\sergi\\OneDrive\\Documents\\Programacion 1\\Project Programacion 1-1\\Project Programacion 1-1\\Cinema T.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{900E769D-700F-46D3-9713-7FAB628A7ADB}|Project Programacion 1-1\\Project Programacion 1-1.vcxproj|solutionrelative:Project Programacion 1-1\\Cinema T.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Cinema T.cpp",
+              "DocumentMoniker": "C:\\Users\\sergi\\OneDrive\\Documents\\Programacion 1\\Project Programacion 1-1\\Project Programacion 1-1\\Cinema T.cpp",
+              "RelativeDocumentMoniker": "Project Programacion 1-1\\Cinema T.cpp",
+              "ToolTip": "C:\\Users\\sergi\\OneDrive\\Documents\\Programacion 1\\Project Programacion 1-1\\Project Programacion 1-1\\Cinema T.cpp",
+              "RelativeToolTip": "Project Programacion 1-1\\Cinema T.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-26T01:44:45.068Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
