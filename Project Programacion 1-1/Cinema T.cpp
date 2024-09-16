@@ -1,34 +1,29 @@
-
-
 #include <iostream>
 using namespace std;
 
-//private, public y protected
 
 class Movie {
-    private:
-        string name;
-            int year;
-            int time;
-        string country;
-            int reviews; //Del 0 al 10
-            bool withData = false;
+private:
+    string name;
+    int year;
+    int time;
+    string country;
+    int reviews;
+    bool withData = false;
 
-        public:
-            Movie() {
+public:
+    Movie() {
 
-            }
+    }
 
-            Movie(string name, int year, int time, string country, int reviews) {
+    Movie(string name, int year, int time, string country, int reviews) {
+        this->name = name;
+        this->year = year;
+        this->time = time;
+        this->country = country;
+        this->reviews = reviews;
+    }
 
-                this->name = name;
-                this->year = year;
-                this->time = time;
-                this->country = country;
-                this->reviews = reviews;
-            }
-
-    // Getters
     string getName() { return name; }
     int getYear() { return year; }
     int getTime() { return time; }
@@ -36,9 +31,9 @@ class Movie {
     int getReviews() { return reviews; }
     bool getWithData() { return withData; }
 
-    // Setters
+
     void setName(string n) { name = n; }
-    void setYear(int y) { year = y; }
+    void setYear(int ye) { year = ye; }
     void setTime(int t) { time = t; }
     void setCountry(string c) { country = c; }
     void setReviews(int r) { reviews = r; }
@@ -46,40 +41,83 @@ class Movie {
 };
 
 class Seat {
-    private:
-        int id;
-        string state; //Disponible | Reservada | Vendida
+private:
+    int id;
+    bool state;
 
-        public:
+public:
 
-            Seat() {
-                this->state = "DIS";
-            }
+    Seat() {
+        this->state = false;
+    }
+    void setState(bool estado) {
+        state = estado;
+    }
+    int getId() {
+        return id;
+    }
+    bool getState() {
+        return state;
+    }
+
 
 };
 
 class Room {
-    private:
-        int id;
-        int seatsNumber;
-        double price;
-        Seat roomSeats[5][5];
+private:
+    int id;
+    int seatsNumber;
+    double price;
+    Seat roomSeats[5][5];
 
-        public:
+public:
 
-            Room() {
+    Room() {
 
+    }
+
+
+    Room(int id, int seatsNumber, double price) {
+        this->id = id;
+        this->seatsNumber = seatsNumber;
+        this->price = price;
+    }
+
+    double getPrice() {
+        return this->price;
+    }
+    int getId() {
+        return this->id;
+    }
+    int getSeat() {
+        return this->seatsNumber; 
+    }
+
+    void printSeats() {
+        
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+
+                if (roomSeats[i][j].getState() == false) {
+                    cout << 0 << " ";
+                }
+                else {
+                    cout << 1 << " ";
+                }
             }
+            cout << endl;
+        }
 
-            Room(int id, int seatsNumber, double price) {
-                this->id = id;
-                this->seatsNumber = seatsNumber;
-                this->price = price;
-            }
 
-            double getPrice() {
-                return this->price;
-            }
+    }
+    void buySeat() {
+        int x, y;
+        printSeats();
+        roomSeats[x][y].setState(true);
+        cout << endl;
+        printSeats();
+    }
 };
 
 class Schedule {
@@ -87,8 +125,8 @@ private:
     string date;
     int startHour;
     int endHour;
-    Movie movie; //*
-    Room room; //*
+    Movie movie;
+    Room room;
 
 public:
 
@@ -115,12 +153,18 @@ public:
     string getDate() {
         return this->date;
     }
+    int getStartHour() {
+        return this->startHour;
+    }
+    int getEndHour() {
+        return this->endHour;
+    }
 };
 
 class Booking {
 private:
-    Schedule schedule; //*
-    Seat bookSeats[5]; //Limite de 5 asientos por reserva
+    Schedule schedule;
+    Seat bookSeats[5];
     double totalPrice;
     int bookingNumber;
 
@@ -130,7 +174,7 @@ public:
 
 class Sale {
 private:
-    Booking booking; //*
+    Booking booking; 
     string idCustomer;
     string cardNumber;
 
@@ -140,8 +184,8 @@ public:
 
 class Cinema {
 private:
-    Movie cinemaMovies[4]; // * * * * * . . . . .
-    Room  cinemaRooms[2];
+    Movie cinemaMovies[4];
+    Room cinemaRooms[4];
     Schedule cinemaSchedules[4];
     Booking cinemaBookings[50];
     Sale sales[50];
@@ -151,13 +195,108 @@ public:
         generateMovies();
         generateRooms();
         generateSchedules();
+       // generateSeats(); para asignarles numeros y estados a cada asiento
     }
 
     void print() {
-        cout << "Seleccione su horario: " << "\n";
-        cout << "Fecha: " << cinemaSchedules[0].getDate() << "\n";
-        cout << "Pelicula: " << cinemaSchedules[0].getMovie().getName() << "\n";
-        cout << "Sala: " << cinemaSchedules[0].getRoom().getPrice() << "\n";
+
+        int option, optionA;
+
+        do {
+            showMenu();
+            cin >> option;
+
+            switch (option) {
+            case 1:
+                cout << "1-Acerca de. " << endl <<
+                    "2-Salir. " << endl;
+                cin >> optionA;
+                if (optionA == 1) {
+                    cout << "Este programa fue creado por el estudiante Abdel Marin Quesada" << endl;
+                }
+                else if (optionA == 2) {
+                    cout << "Saliendo del sistema...\n";
+                    break;
+                }
+                else {
+                    cout << "Opcion invalida";
+                    break;
+                }
+                break;
+            case 2:
+                cout << "Peliculas: " << endl;
+                cout << "Pelicula: " << cinemaSchedules[0].getMovie().getName() << "\n";
+                cout << "Anio: " << cinemaSchedules[0].getMovie().getYear() << "\n";
+                cout << "Duracion: " << cinemaSchedules[0].getMovie().getTime() << " horas." << "\n";
+                cout << "Nacionalidad: " << cinemaSchedules[0].getMovie().getCountry() << "\n";
+                cout << "Resenias: " << cinemaSchedules[0].getMovie().getReviews() << "\n";
+
+                cout << "Pelicula: " << cinemaSchedules[1].getMovie().getName() << "\n";
+                cout << "Anio: " << cinemaSchedules[1].getMovie().getYear() << "\n";
+                cout << "Duracion: " << cinemaSchedules[1].getMovie().getTime() << " horas." << "\n";
+                cout << "Nacionalidad: " << cinemaSchedules[1].getMovie().getCountry() << "\n";
+                cout << "Resenias: " << cinemaSchedules[1].getMovie().getReviews() << "\n";
+
+                cout << "Pelicula: " << cinemaSchedules[2].getMovie().getName() << "\n";
+                cout << "Anio: " << cinemaSchedules[2].getMovie().getYear() << "\n";
+                cout << "Duracion: " << cinemaSchedules[2].getMovie().getTime() << " horas." << "\n";
+                cout << "Nacionalidad: " << cinemaSchedules[2].getMovie().getCountry() << "\n";
+                cout << "Resenias: " << cinemaSchedules[2].getMovie().getReviews() << "\n";
+
+                cout << "Pelicula: " << cinemaSchedules[3].getMovie().getName() << "\n";
+                cout << "Anio: " << cinemaSchedules[3].getMovie().getYear() << "\n";
+                cout << "Duracion: " << cinemaSchedules[3].getMovie().getTime() << " horas." << "\n";
+                cout << "Nacionalidad: " << cinemaSchedules[3].getMovie().getCountry() << "\n";
+                cout << "Resenias: " << cinemaSchedules[3].getMovie().getReviews() << "\n\n";
+                cout << "Informacion de las salas: " << endl;
+
+                cout << "Numero de sala: " << cinemaSchedules[0].getRoom().getId() << "\n";
+                cout << "Numero de asientos: " << cinemaSchedules[0].getRoom().getSeat() << "\n";
+                cout << "Precio: " << cinemaSchedules[0].getRoom().getPrice() << "\n";
+
+                cout << "Numero de sala: " << cinemaSchedules[1].getRoom().getId() << "\n";
+                cout << "Numero de asientos: " << cinemaSchedules[1].getRoom().getSeat() << "\n";
+                cout << "Precio: " << cinemaSchedules[1].getRoom().getPrice() << "\n";
+                cout << "Informacion de los horarios: " << endl;
+
+                cout << "Fecha: " << cinemaSchedules[0].getDate();
+                cout << "Hora de inicio: " << cinemaSchedules[0].getStartHour();
+                cout << "Hora de final: " << cinemaSchedules[0].getEndHour();
+
+                cout << "Fecha: " << cinemaSchedules[1].getDate();
+                cout << "Hora de inicio: " << cinemaSchedules[1].getStartHour();
+                cout << "Hora de final: " << cinemaSchedules[1].getEndHour();
+
+                cout << "Fecha: " << cinemaSchedules[2].getDate();
+                cout << "Hora de inicio: " << cinemaSchedules[2].getStartHour();
+                cout << "Hora de final: " << cinemaSchedules[2].getEndHour();
+
+                cout << "Fecha: " << cinemaSchedules[3].getDate();
+                cout << "Hora de inicio: " << cinemaSchedules[3].getStartHour();
+                cout << "Hora de final: " << cinemaSchedules[3].getEndHour();
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+                cout << "Funcion de venta no implementada.\n";
+                break;
+            default:
+                cout << "Opción no válida.\n";
+                break;
+            }
+        } while (option != 4);
+
+
+        int optionP;
+
+        cin >> option;
+
+        cout << "Seleccione la pelicula deseada: " << "\n";
+        cout << "Pelicula: " << cinemaSchedules[1].getMovie().getName() << "\n";
+        cout << "Sala: " << cinemaSchedules[1].getRoom().getId() << "\n";
+        cout << "Fecha: " << cinemaSchedules[1].getStartHour() << "- " << cinemaSchedules[1].getEndHour() << "\n";
 
     }
 
@@ -178,9 +317,12 @@ public:
     void generateRooms() {
         Room room1(1, 25, 4000);
         cinemaRooms[0] = room1;
+        cinemaRooms[2] = room1;
 
         Room room2(2, 25, 4000);
         cinemaRooms[1] = room2;
+        cinemaRooms[3] = room2;
+
     }
 
     void generateSchedules() {
@@ -196,48 +338,30 @@ public:
         Schedule schedule4("17/06/2014", 6, 8, cinemaMovies[0], cinemaRooms[0]);
         cinemaSchedules[0] = schedule1;
     }
-
-    void addMovie() {
-        int moviesNumber = 0;
-        cout << "Numero de peliculas?? ";
-        cin >> moviesNumber;
-
-        if (moviesNumber < 1 || moviesNumber > 10) {
-            return;
-        }
-
-        string name = "", country = "";
-        int year = 0, time = 0, reviews = 0;
-        for (int index = 0; index < moviesNumber; index++) {
-            if (!cinemaMovies[index].getWithData()) {
-                cout << "Name: ";
-                cin >> name;
-                cout << "Year: ";
-                cin >> year;
-                cout << "Time: ";
-                cin >> time;
-                cout << "Reviews: ";
-                cin >> reviews;
-                cout << "Country: ";
-                cin >> country;
-
-                //Almacena
-                cinemaMovies[index].setName(name);
-                cinemaMovies[index].setYear(year);
-                cinemaMovies[index].setTime(time);
-                cinemaMovies[index].setReviews(reviews);
-                cinemaMovies[index].setCountry(country);
-                cinemaMovies[index].setWithData(true);
-            }
-        }
+    void test() {
+        cinemaRooms[1].buySeat();
 
     }
+    void showMenu() {
+        cout << "Menu: " << endl <<
+            "1) Archivo. " << endl <<
+            "2) Mantenimiento. " << endl <<
+            "3) Reserva. " << endl <<
+            "4) Venta. " << endl;
+
+    }
+
+
 };
 
 int main()
 {
+
     Cinema cinema;
-    cinema.print();
+    //cinema.print();
+    cinema.test();
+
+
     cout << "\n\n\n\n";
     return 0;
 }

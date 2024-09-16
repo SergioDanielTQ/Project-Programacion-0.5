@@ -1,2 +1,4 @@
 ﻿  Cinema T.cpp
-  Project Programacion 1-1.vcxproj -> C:\Users\sergi\OneDrive\Documents\Programacion 1\Project Programacion 1-1\x64\Debug\Project Programacion 1-1.exe
+C:\Users\sergi\OneDrive\Documents\Programacion 1\Project Programacion 1-1\Project Programacion 1-1\Cinema T.cpp(292,13): warning C4101: 'optionP': variable local sin referencia
+C:\Users\sergi\OneDrive\Documents\Programacion 1\Project Programacion 1-1\Project Programacion 1-1\Cinema T.cpp(117,1): error C4700: se utilizó la variable local 'x' sin inicializar
+C:\Users\sergi\OneDrive\Documents\Programacion 1\Project Programacion 1-1\Project Programacion 1-1\Cinema T.cpp(117,1): error C4700: se utilizó la variable local 'y' sin inicializar
